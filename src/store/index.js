@@ -1,15 +1,74 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createParsistedState from 'vuex-persistedState';
+import axios from 'axios'
+import router from '../router/index'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  plugins: [createParsistedState()],
   state: {
+    auth: "",
+    user: ""
   },
   mutations: {
+    auth(state, payload) {
+      state.auth = payload
+    },
+    user(state, payload) {
+      state.user = payload
+    },
+    logout(state, payload) {
+      state.auth = payload
+    },
+    changeUserData(state, payload) {
+      state.user.profile = payload
+    }
   },
   actions: {
-  },
-  modules: {
+    async login ({
+      commit
+    }, {
+      email,
+      password
+    }) {
+      let responseLogin = await axios
+      .post("HerokuのURL/login", {
+        email: email,
+        password: password
+      })
+      let responseUser = await axios
+      .get("HerokuのURL/user" ,{
+        params: {
+          email: email
+        }
+      })
+      commit('auth', responseLogin.data.auth)
+      commit('user', responseUser.data[0])
+      router.replace("/home")
+    },
+    logout({
+      commit
+    }) {
+      axios
+      .post("HerokuのURL/logout", {
+        auth: this.state.auth
+      })
+      .then(response => {
+        console.log(response);
+        commit('logout', response.data.auth)
+        router.replace("/")
+      }) .catch(error => {
+        console.log(error)
+      })
+    },
+    changeUserData({
+      commit
+    }, {
+      profile
+    }) {
+      commit('changeUserData', profile)
+    }
   }
-})
+});
