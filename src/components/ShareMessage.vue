@@ -21,7 +21,7 @@ export default {
             if(this.share === "") {
                 alert("シェアする内容を入力してください");
             } else {
-                axios.post("HerokuのURL/shares", {
+                axios.post("https://cli.vuejs.org/guide/deployment.html/shares", {
                     user_id: this.$store.state.user._id,
                     share: this.share
                 })

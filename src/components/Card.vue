@@ -26,7 +26,7 @@ export default {
         auth() {
             if(this.value == "新規登録") {
                 axios
-                .post("HerokuのURL/register", {
+                .post("https://cli.vuejs.org/guide/deployment.html/register", {
                     name: this.name,
                     profile: this.profile,
                     email: this.email,

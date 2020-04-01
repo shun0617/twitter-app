@@ -55,7 +55,7 @@
             edit() {
                 if(!this.active) {
                     axios
-                    .put("HerokuのURL/user", {
+                    .put("https://cli.vuejs.org/guide/deployment.html/user", {
                         email: this.$store.state.user.email,
                         profile: this.profile
                     })

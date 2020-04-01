@@ -67,7 +67,7 @@ export default {
     },
     methods: {
         send() {
-            axios.post("HerokuのURL" + this.id + "/comments", {
+            axios.post("https://cli.vuejs.org/guide/deployment.html" + this.id + "/comments", {
                 name: this.$store.state.user.name,
                 content: this.content
             })
@@ -78,7 +78,7 @@ export default {
         },
         comment() {
             axios
-            .get("HerokuのURL" + this.id)
+            .get("https://cli.vuejs.org/guide/deployment.html" + this.id)
             .then(response => {
                 this.data = response.data.comments;
             });

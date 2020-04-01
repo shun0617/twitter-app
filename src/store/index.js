@@ -1,13 +1,13 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import createParsistedState from 'vuex-persistedState';
-import axios from 'axios'
-import router from '../router/index'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import createPersistedState from "vuex-persistedstate";
+import axios from 'axios';
+import router from '../router/index';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  plugins: [createParsistedState()],
+  plugins: [createPersistedState()],
   state: {
     auth: "",
     user: ""
@@ -34,12 +34,12 @@ export default new Vuex.Store({
       password
     }) {
       let responseLogin = await axios
-      .post("HerokuのURL/login", {
+      .post("https://cli.vuejs.org/guide/deployment.html/login", {
         email: email,
         password: password
       })
       let responseUser = await axios
-      .get("HerokuのURL/user" ,{
+      .get("https://cli.vuejs.org/guide/deployment.html/user" ,{
         params: {
           email: email
         }
@@ -52,7 +52,7 @@ export default new Vuex.Store({
       commit
     }) {
       axios
-      .post("HerokuのURL/logout", {
+      .post("https://cli.vuejs.org/guide/deployment.html/logout", {
         auth: this.state.auth
       })
       .then(response => {
