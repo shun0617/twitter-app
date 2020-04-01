@@ -34,12 +34,12 @@ export default new Vuex.Store({
       password
     }) {
       let responseLogin = await axios
-      .post("https://cli.vuejs.org/guide/deployment.html/login", {
+      .post("https://banana-cupcake-24393.herokuapp.com/login", {
         email: email,
         password: password
       })
       let responseUser = await axios
-      .get("https://cli.vuejs.org/guide/deployment.html/user" ,{
+      .get("https://banana-cupcake-24393.herokuapp.com/user" ,{
         params: {
           email: email
         }
@@ -52,7 +52,7 @@ export default new Vuex.Store({
       commit
     }) {
       axios
-      .post("https://cli.vuejs.org/guide/deployment.html/logout", {
+      .post("https://banana-cupcake-24393.herokuapp.com/", {
         auth: this.state.auth
       })
       .then(response => {

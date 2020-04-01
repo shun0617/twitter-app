@@ -55,7 +55,7 @@
             edit() {
                 if(!this.active) {
                     axios
-                    .put("https://cli.vuejs.org/guide/deployment.html/user", {
+                    .put("https://banana-cupcake-24393.herokuapp.com/user", {
                         email: this.$store.state.user.email,
                         profile: this.profile
                     })

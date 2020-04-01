@@ -35,7 +35,7 @@
                     this.share[index].like.forEach(element => {
                         if(element.user_id == this.$store.state.user._id) {
                             axios
-                            .delete("https://cli.vuejs.org/guide/deployment.html/shares/" + element.share_id + "like", {
+                            .delete("https://banana-cupcake-24393.herokuapp.com/" + element.share_id + "like", {
                                 params: {
                                     user_id: element.user_id
                                 }
@@ -47,7 +47,7 @@
                     });
                 } else {
                     axios
-                    .post("https://cli.vuejs.org/guide/deployment.html/shares/" + this.shares[index].share_id + "/like", {
+                    .post("https://banana-cupcake-24393.herokuapp.com/" + this.shares[index].share_id + "/like", {
                         user_id: this.$store.state.user_id
                     })
                     .then(response => {
@@ -57,17 +57,17 @@
             },
             del(index) {
                 axios
-                .delete("https://cli.vuejs.org/guide/deployment.html/shares/" + this.shares[index].share_id)
+                .delete("https://banana-cupcake-24393.herokuapp.com/" + this.shares[index].share_id)
                 .then(response => {
                     console.log(response);
                 });
             },
             async getShares() {
                 let data = [];
-                let shares = await axios.get("https://cli.vuejs.org/guide/deployment.html/shares/");
+                let shares = await axios.get("https://banana-cupcake-24393.herokuapp.com/");
                 for(let i = 0; i < shares.data.length; i ++) {
                     await axios
-                    .get("https://cli.vuejs.org/guide/deployment.html/shares/" + shares.data[i]._id)
+                    .get("https://banana-cupcake-24393.herokuapp.com/" + shares.data[i]._id)
                     .then(response => {
                         if(this.$route.name == "profile") {
                             if(response.data.user_id == this.$store.state.user._id) {
