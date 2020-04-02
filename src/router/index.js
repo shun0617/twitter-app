@@ -47,14 +47,15 @@ const router = new VueRouter({
 })
 
 //繋ぎこみ
-router.beforeEach((to, form, next) => {
-  if(to.matched.some(record => record.meta.requiresAuth) && !store.state.auth) {
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth) && !store.state.auth) {
     next({
       path: '/',
       query: {
         redirect: to.fullPath
       }
     });
+  } else {
     next();
   }
 });
