@@ -67,7 +67,7 @@ export default {
     },
     methods: {
         send() {
-            axios.post("https://banana-cupcake-24393.herokuapp.com/" + this.id + "/comments", {
+            axios.post("https://whispering-stream-08735.herokuapp.com/" + this.id + "/comments", {
                 name: this.$store.state.user.name,
                 content: this.content
             })
@@ -78,7 +78,7 @@ export default {
         },
         comment() {
             axios
-            .get("https://banana-cupcake-24393.herokuapp.com/" + this.id)
+            .get("https://whispering-stream-08735.herokuapp.com/" + this.id)
             .then(response => {
                 this.data = response.data.comments;
             });

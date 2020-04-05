@@ -49,13 +49,14 @@
                 name: this.$store.state.user.name,
                 profile: this.$store.state.user.profile,
                 hoge: ""
-            };
+            }
         },
+        
         methods: {
             edit() {
                 if(!this.active) {
                     axios
-                    .put("https://banana-cupcake-24393.herokuapp.com/user", {
+                    .put("https://whispering-stream-08735.herokuapp.com/user", {
                         email: this.$store.state.user.email,
                         profile: this.profile
                     })
@@ -115,6 +116,19 @@
 .flex-profile {
     display: flex;
     justify-content: space-between;
+}
+.profile-name {
+    color: white;
+}
+button {
+    width: 100px;
+    text-align: center;
+    padding: 8px 0 10px;
+    color: #fff;
+    background-color: #5419da;
+    border-radius: 25px;
+    display: block;
+    margin: 0 0 0 auto;
 }
 @media screen and (max-width: 480) {
     .text {

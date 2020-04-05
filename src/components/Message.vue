@@ -29,13 +29,13 @@
         methods: {
             fav(index) {
                 let result =this.shares[index].like.some(value => {
-                    return value.user_id == this.$store.state.user._id;
+                    return value.user_id == this.$store.state.user_id;
                 });
                 if(result) {
                     this.share[index].like.forEach(element => {
-                        if(element.user_id == this.$store.state.user._id) {
+                        if(element.user_id == this.$store.state.user_id) {
                             axios
-                            .delete("https://banana-cupcake-24393.herokuapp.com/" + element.share_id + "like", {
+                            .delete("https://whispering-stream-08735.herokuapp.com/shares/" + element.share_id + "like", {
                                 params: {
                                     user_id: element.user_id
                                 }
@@ -47,7 +47,7 @@
                     });
                 } else {
                     axios
-                    .post("https://banana-cupcake-24393.herokuapp.com/" + this.shares[index].share_id + "/like", {
+                    .post("https://whispering-stream-08735.herokuapp.com/shares/" + this.shares[index].share_id + "/like", {
                         user_id: this.$store.state.user_id
                     })
                     .then(response => {
@@ -57,32 +57,37 @@
             },
             del(index) {
                 axios
-                .delete("https://banana-cupcake-24393.herokuapp.com/" + this.shares[index].share_id)
+                .delete("https://whispering-stream-08735.herokuapp.com/shares/" + this.shares[index].share_id)
                 .then(response => {
                     console.log(response);
                 });
             },
             async getShares() {
                 let data = [];
-                let shares = await axios.get("https://banana-cupcake-24393.herokuapp.com/");
+                let shares = await axios.get("https://whispering-stream-08735.herokuapp.com/shares/");
                 for(let i = 0; i < shares.data.length; i ++) {
                     await axios
-                    .get("https://banana-cupcake-24393.herokuapp.com/" + shares.data[i]._id)
+                    .get("https://whispering-stream-08735.herokuapp.com/shares/" + shares.data[i]._id)
                     .then(response => {
                         if(this.$route.name == "profile") {
-                            if(response.data.user_id == this.$store.state.user._id) {
+                            if(response.data.user_id == this.$store.state.user_id) {
                                 data.push(response.data);
+                                console.log(response.data);
                             }
                         } else if(this.$route.name == "detail") {
                             if(response.data.share_id == this.id) {
                                 data.push(response.data);
+                                console.log(response.data);
                             }
                         } else {
                             data.push(response.data);
+                            console.log(response.data);
+                            console.log(data);
                         }
                     });
                 }
-                this.sharea = data;
+                this.shares = data;
+                console.log(data);
             }
         },
         created() {

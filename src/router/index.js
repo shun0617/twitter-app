@@ -5,7 +5,8 @@ import Profile from '../views/Profile.vue'
 import Detail from '../views/Detail.vue'
 import SignUp from '../views/SignUp.vue'
 import Login from '../views/Login.vue'
-import store from '../store/index'
+
+//import store from '../store/index'
 
 Vue.use(VueRouter)
 
@@ -40,6 +41,7 @@ const routes = [
     props: true
   },
 ]
+
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -47,6 +49,7 @@ const router = new VueRouter({
 })
 
 //繋ぎこみ
+/*
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth) && !store.state.auth) {
     next({
@@ -59,5 +62,6 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+*/
 
 export default router

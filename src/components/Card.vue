@@ -2,7 +2,7 @@
     <div class="card">
         <p>{{value}}</p>
         <div class="form">
-            <input placeholder="ユーザーネーム" type="text" v-if="value==='新規登録'" />
+            <input placeholder="ユーザーネーム" type="text" v-model="name" v-if="value==='新規登録'"  />
             <input placeholder="プロフィール" type="text"  v-model="profile" v-if="value==='新規登録'" />
             <input placeholder="メールアドレス" type="email" v-model="email" />
             <input placeholder="パスワード" type="password" v-model="password"/>
@@ -26,12 +26,13 @@ export default {
         auth() {
             if(this.value == "新規登録") {
                 axios
-                .post("https://banana-cupcake-24393.herokuapp.com/register", {
+                .post("https://whispering-stream-08735.herokuapp.com/register", {
                     name: this.name,
                     profile: this.profile,
                     email: this.email,
                     password: this.password
                 })
+                //console.log(this.profile)
                 .then(response => {
                     console.log(response);
                     this.$router.replace("/");
@@ -44,6 +45,7 @@ export default {
                     email: this.email,
                     password: this.password
                 });
+                
             }
         }
     }

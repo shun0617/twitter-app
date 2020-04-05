@@ -21,10 +21,12 @@ export default {
             if(this.share === "") {
                 alert("シェアする内容を入力してください");
             } else {
-                axios.post("https://banana-cupcake-24393.herokuapp.com/", {
+                axios
+                .post("https://whispering-stream-08735.herokuapp.com/shares", {
                     user_id: this.$store.state.user._id,
                     share: this.share
-                })
+                 })
+                // console.log(this.$store.state.user._id)
                 .then(response => {
                     console.log(response);
                     alert("シェアしました");
